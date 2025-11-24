@@ -1,8 +1,3 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
 - main
 
@@ -15,13 +10,18 @@ steps:
     versionSpec: '18.x'
   displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'Install and Build'
+# Install dependencies inside demo-app folder
+- script: npm install
+  workingDirectory: demo-app
+  displayName: 'Install Dependencies'
 
+# Build React app inside demo-app folder
+- script: npm run build
+  workingDirectory: demo-app
+  displayName: 'Build React App'
+
+# Publish the build artifacts
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'build'
+    PathtoPublish: 'demo-app/build'
     ArtifactName: 'drop'
-
