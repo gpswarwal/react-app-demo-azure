@@ -25,3 +25,13 @@ steps:
   inputs:
     PathtoPublish: 'demo-app/build'
     ArtifactName: 'drop'
+    
+# Deploy to Azure Static Web App
+- task: AzureStaticWebApp@0
+  inputs:
+    azure_subscription: '<YOUR-SERVICE-CONNECTION>'  # Required
+    app_location: 'demo-app'                        # React app folder
+    output_location: 'build'                        # Build output
+    api_location: ''                                # No API (optional)
+    skip_app_build: true                            # Build already done above
+  displayName: "Deploy to Azure Static Web App"
