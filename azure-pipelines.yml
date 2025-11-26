@@ -29,9 +29,5 @@ steps:
 # Deploy to Azure Static Web App
 - task: AzureStaticWebApp@0
   inputs:
-    azure_subscription: '<YOUR-SERVICE-CONNECTION>'  # Required
-    app_location: 'demo-app'                        # React app folder
-    output_location: 'build'                        # Build output
-    api_location: ''                                # No API (optional)
-    skip_app_build: true                            # Build already done above
-  displayName: "Deploy to Azure Static Web App"
+    app_location: 'drop'
+    azure_static_web_apps_api_token: 'c7b3e3aadf5394574d91eaf3338ad5b7fbaa7193d1936a697f0ac3a2531f798503-15211cb1-6046-41f4-a265-5d1f1a4572f4010152300f41b310'
