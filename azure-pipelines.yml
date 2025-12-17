@@ -4,24 +4,28 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-stages:
-- stage: BUILD
-  displayName: Build Stage
-  jobs:
-  - job: BuildJob
-    displayName: Build Job (3 Minutes)
-    timeoutInMinutes: 5
+steps:
 
-    steps:
-    - checkout: self
+# Install correct Node version
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Install Node.js'
 
-    - script: |
-        echo "=============================="
-        echo "Build started"
-        echo "Simulating build for 3 minutes"
-        echo "=============================="
-        sleep 180
-        echo "=============================="
-        echo "Build completed"
-        echo "=============================="
-      displayName: Run Build (Sleep 3 min)
+# Install dependencies from demo-app folder
+- script: npm install
+  workingDirectory: demo-app
+  displayName: 'Install Dependencies'
+
+# Build the React app
+- script: npm run build
+  workingDirectory: demo-app
+  displayName: 'Build React App'
+
+# Deploy to Azure Static Web App
+- task: AzureStaticWebApp@0
+  inputs:
+    app_location: 'demo-app'
+    output_location: 'build'
+    azure_static_web_apps_api_token: 'c7b3e3aadf5394574d91eaf3338ad5b7fbaa7193d1936a697f0ac3a2531f798503-15211cb1-6046-41f4-a265-5d1f1a4572f4010152300f41b310'
+  displayName: 'Deploy to Azure Static Web Apps'
