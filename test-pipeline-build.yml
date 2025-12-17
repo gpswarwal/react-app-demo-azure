@@ -1,0 +1,27 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: BUILD
+  displayName: Build Stage
+  jobs:
+  - job: BuildJob
+    displayName: Build Job (3 Minutes)
+    timeoutInMinutes: 5
+
+    steps:
+    - checkout: self
+
+    - script: |
+        echo "=============================="
+        echo "Build started"
+        echo "Simulating build for 3 minutes"
+        echo "=============================="
+        sleep 180
+        echo "=============================="
+        echo "Build completed"
+        echo "=============================="
+      displayName: Run Build (Sleep 3 min)
