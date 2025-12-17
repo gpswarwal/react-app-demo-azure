@@ -10,11 +10,8 @@ stages:
   jobs:
   - job: BuildJob
     displayName: Build Job (3 Minutes)
-    timeoutInMinutes: 5
 
     steps:
-    - checkout: self
-
     - script: |
         echo "=============================="
         echo "Build started"
@@ -25,3 +22,40 @@ stages:
         echo "Build completed"
         echo "=============================="
       displayName: Run Build (Sleep 3 min)
+
+- stage: DEPLOY
+  displayName: deploy Stage
+  jobs:
+  - job: deployJob
+    displayName: deploy Job (3 Minutes)
+
+    steps:
+    - script: |
+        echo "=============================="
+        echo "deploy started"
+        echo "Simulating deploy for 2 minutes"
+        echo "=============================="
+        sleep 120
+        echo "=============================="
+        echo "deploy completed"
+        echo "=============================="
+      displayName: Run deploy (Sleep 2 min)
+
+- stage: POSTDEPLOY
+  displayName: post deploy Stage
+  jobs:
+  - job: postdeployJob
+    displayName: post deploy Job (3 Minutes)
+
+    steps:
+    - script: |
+        echo "=============================="
+        echo "post deploy started"
+        echo "Simulating post deploy for 4 minutes"
+        echo "=============================="
+        sleep 240
+        echo "=============================="
+        echo "post deploy completed"
+        echo "=============================="
+      displayName: Run post deploy (Sleep 4 min)
+
