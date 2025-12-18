@@ -1,0 +1,10 @@
+trigger:
+- main
+
+stages:
+- stage: START
+  displayName: Start Parallel Pipelines
+  jobs:
+  - job: Start
+    steps:
+    - script: echo "Starting Build and Deploy pipelines in parallel"
