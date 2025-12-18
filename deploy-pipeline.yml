@@ -1,7 +1,7 @@
 parameters:
   stageName: ''
   jobName: ''
-  runTimeInSeconds: 300
+  runTimeInSeconds: 240
 
 stages:
 - stage: ${{ parameters.stageName }}
@@ -11,7 +11,7 @@ stages:
   jobs:
   - job: ${{ parameters.jobName }}
     displayName: Deploy Job
-    timeoutInMinutes: 15
+    timeoutInMinutes: 10
 
     steps:
     - checkout: self
