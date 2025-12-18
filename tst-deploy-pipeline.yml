@@ -1,0 +1,17 @@
+trigger: none
+
+resources:
+  pipelines:
+  - pipeline: main
+    source: main-pipeline
+    trigger: true
+
+stages:
+- stage: DEPLOY
+  displayName: Deploy Stage
+  jobs:
+  - job: DeployJob
+    steps:
+    - script: |
+        echo "Deploy running..."
+        sleep 300
