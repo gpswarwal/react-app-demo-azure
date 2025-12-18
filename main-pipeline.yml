@@ -17,7 +17,7 @@ stages:
     jobName: DeployJob
     runTimeInSeconds: 300   # 5 minutes
 
-- template: post-deploy-pipeline.yml
+- template: post-deploy.yml
   parameters:
     stageName: POST_DEPLOY
     jobName: PostDeployJob
