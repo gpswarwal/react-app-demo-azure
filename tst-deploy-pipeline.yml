@@ -3,7 +3,7 @@ trigger: none
 resources:
   pipelines:
   - pipeline: main
-    source: main-pipeline
+    source: tst-main-pipeline
     trigger: true
 
 stages:
