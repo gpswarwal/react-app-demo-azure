@@ -4,17 +4,20 @@ parameters:
   runTimeInSeconds: 60
 
 stages:
-- stage: ${{ parameters.stageName }}
+- stage: BUILD
   displayName: Build Stage
   jobs:
-  - job: ${{ parameters.jobName }}
-    displayName: Build Job
-    timeoutInMinutes: 10
+  - job: BuildJob
+    displayName: Build Job (1 Minutes)
 
     steps:
-    - checkout: self
     - script: |
+        echo "=============================="
         echo "Build started"
-        sleep ${{ parameters.runTimeInSeconds }}
+        echo "Simulating build for 1 minute"
+        echo "=============================="
+        sleep 60
+        echo "=============================="
         echo "Build completed"
-      displayName: Build Step
+        echo "=============================="
+      displayName: Run Build (Sleep 1 min)
