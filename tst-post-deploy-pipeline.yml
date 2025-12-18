@@ -3,9 +3,9 @@ trigger: none
 resources:
   pipelines:
   - pipeline: build
-    source: build-pipeline
+    source: tst-build-pipeline
   - pipeline: deploy
-    source: deploy-pipeline
+    source: tst-deploy-pipeline
 
 stages:
 - stage: POST_DEPLOY
