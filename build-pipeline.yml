@@ -1,23 +1,23 @@
 parameters:
   stageName: ''
   jobName: ''
-  runTimeInSeconds: 60
+  runTimeInSeconds: 120
 
 stages:
 - stage: BUILD
   displayName: Build Stage
   jobs:
   - job: BuildJob
-    displayName: Build Job (1 Minutes)
+    displayName: Build Job (2 Minutes)
 
     steps:
     - script: |
         echo "=============================="
         echo "Build started"
-        echo "Simulating build for 1 minute"
+        echo "Simulating build for 2 minutes"
         echo "=============================="
-        sleep 60
+        sleep 120
         echo "=============================="
         echo "Build completed"
         echo "=============================="
-      displayName: Run Build (Sleep 1 min)
+      displayName: Run Build (Sleep 2 min)
