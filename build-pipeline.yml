@@ -1,14 +1,14 @@
 parameters:
   stageName: ''
   jobName: ''
-  runTimeInSeconds: 120
+  runTimeInSeconds: 30
 
 stages:
 - stage: BUILD
   displayName: Build Stage
   jobs:
   - job: BuildJob
-    displayName: Build Job (2 Minutes)
+    displayName: Build Job (1 Minutes)
 
     steps:
     - script: |
