@@ -1,0 +1,17 @@
+trigger: none
+
+resources:
+  pipelines:
+  - pipeline: main
+    source: main-pipeline
+    trigger: true
+
+stages:
+- stage: BUILD
+  displayName: Build Stage
+  jobs:
+  - job: BuildJob
+    steps:
+    - script: |
+        echo "Build running..."
+        sleep 180
