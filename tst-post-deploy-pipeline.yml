@@ -1,0 +1,25 @@
+trigger: none
+
+resources:
+  pipelines:
+  - pipeline: build
+    source: build-pipeline
+  - pipeline: deploy
+    source: deploy-pipeline
+
+stages:
+- stage: POST_DEPLOY
+  displayName: Post Deploy Stage
+  dependsOn: []
+  condition: |
+    and(
+      succeeded(resources.pipeline.build),
+      succeeded(resources.pipeline.deploy)
+    )
+
+  jobs:
+  - job: PostDeployJob
+    steps:
+    - script: |
+        echo "Post-deploy running after Build and Deploy"
+        sleep 120
