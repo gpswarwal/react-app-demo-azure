@@ -5,19 +5,19 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-- template: templates/stages/build-stage.yml
+- template: build-pipeline.yml
   parameters:
     stageName: BUILD
     jobName: BuildJob
     runTimeInSeconds: 180   # 3 minutes
 
-- template: templates/stages/deploy-stage.yml
+- template: deploy-pipeline.yml
   parameters:
     stageName: DEPLOY
     jobName: DeployJob
     runTimeInSeconds: 300   # 5 minutes
 
-- template: templates/stages/post-deploy-stage.yml
+- template: post-deploy-pipeline.yml
   parameters:
     stageName: POST_DEPLOY
     jobName: PostDeployJob
