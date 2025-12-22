@@ -1,7 +1,7 @@
 parameters:
   stageName: ''
   jobName: ''
-  runTimeInSeconds: 300
+  runTimeInSeconds: 180
 
 stages:
 - stage: ${{ parameters.stageName }}
