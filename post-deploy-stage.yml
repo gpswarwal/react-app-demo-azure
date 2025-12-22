@@ -3,6 +3,7 @@ parameters:
   jobName: ''
   runTimeInSeconds: 120
 
+stages:
 - stage: ${{ parameters.stageName }}
   displayName: Post Deploy Stage
   dependsOn:
