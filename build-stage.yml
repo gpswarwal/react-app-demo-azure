@@ -1,0 +1,19 @@
+parameters:
+  stageName: ''
+  jobName: ''
+  runTimeInSeconds: 60
+
+stages:
+- stage: ${{ parameters.stageName }}
+  displayName: Build Stage
+
+  jobs:
+  - job: ${{ parameters.jobName }}
+    timeoutInMinutes: 10
+    steps:
+    - checkout: self
+    - script: |
+        echo "Build started"
+        sleep ${{ parameters.runTimeInSeconds }}
+        echo "Build completed"
+      displayName: Build Step
