@@ -1,0 +1,27 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+# Build runs in parallel
+- template: templates/stages/build-stage.yml
+  parameters:
+    stageName: BUILD
+    jobName: BuildJob
+    runTimeInSeconds: 180
+
+# Deploy runs in parallel
+- template: templates/stages/deploy-stage.yml
+  parameters:
+    stageName: DEPLOY
+    jobName: DeployJob
+    runTimeInSeconds: 300
+
+# Post deploy waits for both
+- template: templates/stages/post-deploy-stage.yml
+  parameters:
+    stageName: POST_DEPLOY
+    jobName: PostDeployJob
+    runTimeInSeconds: 120
