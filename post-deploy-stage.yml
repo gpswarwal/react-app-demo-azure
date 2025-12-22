@@ -8,7 +8,6 @@ stages:
   displayName: Post Deploy Stage
   dependsOn:
     - BUILD
-    - DEPLOY
   condition: succeeded()
 
   jobs:
