@@ -3,7 +3,6 @@ parameters:
   jobName: ''
   runTimeInSeconds:180
 
-stages:
 - stage: ${{ parameters.stageName }}
   displayName: Deploy Stage
 
