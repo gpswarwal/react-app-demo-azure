@@ -6,21 +6,21 @@ pool:
 
 stages:
 # Build runs in parallel
-- template: templates/stages/build-stage.yml
+- template: build-stage.yml
   parameters:
     stageName: BUILD
     jobName: BuildJob
     runTimeInSeconds: 60
 
 # Deploy runs in parallel
-- template: templates/stages/deploy-stage.yml
+- template: deploy-stage.yml
   parameters:
     stageName: DEPLOY
     jobName: DeployJob
     runTimeInSeconds: 180
 
 # Post deploy waits for both
-- template: templates/stages/post-deploy-stage.yml
+- template: post-deploy-stage.yml
   parameters:
     stageName: POST_DEPLOY
     jobName: PostDeployJob
