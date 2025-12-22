@@ -10,14 +10,14 @@ stages:
   parameters:
     stageName: BUILD
     jobName: BuildJob
-    runTimeInSeconds: 180
+    runTimeInSeconds: 60
 
 # Deploy runs in parallel
 - template: templates/stages/deploy-stage.yml
   parameters:
     stageName: DEPLOY
     jobName: DeployJob
-    runTimeInSeconds: 300
+    runTimeInSeconds: 60
 
 # Post deploy waits for both
 - template: templates/stages/post-deploy-stage.yml
