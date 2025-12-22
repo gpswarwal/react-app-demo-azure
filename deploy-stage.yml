@@ -1,0 +1,19 @@
+parameters:
+  stageName: ''
+  jobName: ''
+  runTimeInSeconds: 300
+
+stages:
+- stage: ${{ parameters.stageName }}
+  displayName: Deploy Stage
+
+  jobs:
+  - job: ${{ parameters.jobName }}
+    timeoutInMinutes: 15
+    steps:
+    - checkout: self
+    - script: |
+        echo "Deployment started"
+        sleep ${{ parameters.runTimeInSeconds }}
+        echo "Deployment completed"
+      displayName: Deploy Step
