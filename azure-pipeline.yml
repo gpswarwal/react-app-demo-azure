@@ -1,0 +1,29 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: BUILD
+  displayName: Build Stage
+  jobs:
+  - job: BuildJob
+    displayName: Build Job
+    steps:
+    - checkout: self
+
+    # Create a dummy build output
+    - script: |
+        echo "Building application..."
+        mkdir -p $(Build.ArtifactStagingDirectory)
+        echo "Hello from build pipeline" > $(Build.ArtifactStagingDirectory)/build.txt
+      displayName: Build Step
+
+    # Publish artifact
+    - task: PublishBuildArtifacts@1
+      displayName: Publish Build Artifacts
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
